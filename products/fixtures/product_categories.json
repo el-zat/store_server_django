@@ -1,0 +1,26 @@
+[
+  {
+    "model": "products.productcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Clothes",
+      "description": "All clothes"
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Shoes",
+      "description": "All shoes"
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Accessories",
+      "description": "All Accessories"
+    }
+  }
+]
