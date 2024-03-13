@@ -7,10 +7,12 @@ class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input username',
+        'id': "inputUsername",
     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input password',
+        'id': "inputPassword",
     }))
 
     class Meta:
@@ -22,26 +24,32 @@ class UserRegistrationForm(UserCreationForm):
     firstname = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input firstname',
+        'id': "inputFirst",
     }))
     lastname = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input lastname',
+        'id': "inputLastname",
     }))
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input username',
+        'id': "inputUsername",
     }))
     email = forms.CharField(widget=forms.EmailInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input email',
+        'id': "inputEmail",
     }))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Input password',
+        'id': "inputPassword",
     }))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Confirm password',
+        'id': "inputPassword",
     }))
 
     class Meta:

@@ -22,13 +22,13 @@
                 <div class="form-row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="small mb-1" for="{{ form.firstname.id_for_label }}">Firstname</label>
+                            <label class="small mb-1" id="{{ form.firstname.id_for_label }}" for="{{ form.firstname.id_for_label }}">Firstname</label>
                             {{ form.firstname }}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="small mb-1" for="{{ form.lastname.id_for_label }}">Lastname</label>
+                            <label class="small mb-1" id="{{ form.lastname.id_for_label }}" for="{{ form.lastname.id_for_label }}">Lastname</label>
                             {{ form.lastname }}
                         </div>
                     </div>
@@ -37,17 +37,17 @@
                     <div class="col-lg-12">
                         <div class="custom-file">
                             {{ form.image }}
-                            <label class="custom-file-label" for="{{ form.image.id_for_label }}">Add image</label>
+                            <label class="custom-file-label" id="{{ form.image.id_for_label }}" for="{{ form.image.id_for_label }}">Add image</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-lg-6">
-                        <label class="small mb-1" for="{{ form.username.id_for_label }}">Username</label>
+                        <label class="small mb-1" id="{{ form.username.id_for_label }}" for="{{ form.username.id_for_label }}">Username</label>
                         {{ form.username }}
                     </div>
                     <div class="col-lg-6">
-                        <label class="small mb-1" for="{{ form.email.id_for_label }}">E-mail</label>
+                        <label class="small mb-1" id="{{ form.email.id_for_label }}" for="{{ form.email.id_for_label }}">E-mail</label>
                         {{ form.email }}
                     </div>
                 </div>
