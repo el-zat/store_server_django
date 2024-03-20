@@ -1,4 +1,5 @@
 from django.db import models
+
 from users.models import User
 
 
@@ -13,6 +14,7 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name = "Categoriy"
         verbose_name_plural = "Categories"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
