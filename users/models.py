@@ -26,7 +26,7 @@ class EmailVerification(models.Model):
         verification_link = f'{settings.DOMAIN_NAME}{link}'
         subject = f'Account verification for {self.user.username}'
         message = 'For account verification for {} goto link: {}'.format(self.user.email, verification_link)
-        send_mail(subject=subject, message=message, from_email="from@example.com",
+        send_mail(subject=subject, message=message, from_email=settings.EMAIL_HOST_USER,
                   recipient_list=[self.user.email], fail_silently=False,)
 
     def is_expired(self):
