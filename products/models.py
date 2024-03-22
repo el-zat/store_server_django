@@ -12,7 +12,7 @@ class ProductCategory(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Categoriy"
+        verbose_name = "Category"
         verbose_name_plural = "Categories"
 
 
