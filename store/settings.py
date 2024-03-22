@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'debug_toolbar',
 
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'store.urls'
@@ -84,6 +86,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'store.wsgi.application'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Database
@@ -188,3 +195,8 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'storeserverdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'qtuq nvih vvzr mmmd'
 EMAIL_USE_SSL = True
+
+
+# Celery
+
+CELERY_BROKER_URL
