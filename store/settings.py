@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
+    'django.contrib.humanize',
 
     'allauth',
     'allauth.account',
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'orders.apps.OrdersConfig',
+
 
 ]
 
@@ -195,8 +198,3 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'storeserverdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'qtuq nvih vvzr mmmd'
 EMAIL_USE_SSL = True
-
-
-# Celery
-
-CELERY_BROKER_URL
