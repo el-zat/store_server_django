@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from purchases.forms import PurchaseForm
 from purchases.models import Purchase
 from store.common.views import TitleMixin
+from products.models import Basket
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -57,15 +58,22 @@ class PurchaseCreateView(TitleMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         super(PurchaseCreateView, self).post(request, *args, **kwargs)
+        baskets = Basket.objects.filter(user=self.request.user)
         checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price': 'price_1Oz0v3EZ0aTg4ftyXktQSIXU',
-                    'quantity': 1,
-                },
-            ],
-            mode='payment',
+            line_items=baskets.stripe_products(),
+            metadata={'order_id': self.object.id},
+            mode='subscription',
             success_url='{}{}'.format(settings.DOMAIN_NAME, reverse('purchases:order-success')),
             cancel_url='{}{}'.format(settings.DOMAIN_NAME, reverse('purchases:order-cancelled')),
         )
         return HttpResponseRedirect(checkout_session.url, status=HTTPStatus.SEE_OTHER)
+
+    def form_valid(self, form):
+        form.instance.initiator = self.request.user
+        return super(PurchaseCreateView, self).form_valid(form)
+
+
+def fulfill_order(session):
+    order_id = int(session.metadata.order_id)
+    order = Purchase.objects.get(id=order_id)
+    order.update_after_payment()

@@ -1,9 +1,11 @@
+import stripe
 from django.db import models
-
+from django.conf import settings
 from users.models import User
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
-# Create your models here.
+
 class ProductCategory(models.Model):
     name = models.CharField(max_length=128, unique=True)
     description = models.TextField(null=True, blank=True)
@@ -22,13 +24,26 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='products_images')
+    stripe_product_price_id = models.CharField(max_length=128, null=True, blank=True)
     category = models.ForeignKey(to=ProductCategory, on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name_plural = "Products"
 
     def __str__(self):
         return f'Product: {self.name} | Product category: {self.category.name}'
 
-    class Meta:
-        verbose_name_plural = "Products"
+    def create_stripe_product_price(self):
+        stripe_product = stripe.Product.create(name=self.name)
+        stripe_product_price = stripe.Price.create(
+            product=stripe_product['id'], unit_amount=int(self.price * 100), currency="usd")
+        return stripe_product_price
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if not self.stripe_product_price_id:
+            stripe_product_price = self.create_stripe_product_price()
+            self.stripe_product_price_id = stripe_product_price['id']
+        super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
 
 class BasketQuerySet(models.QuerySet):
@@ -39,6 +54,16 @@ class BasketQuerySet(models.QuerySet):
     def total_quantity(self):
         total_quantity = sum([basket.quantity for basket in self.filter()])
         return total_quantity
+
+    def stripe_products(self):
+        line_items = []
+        for basket in self:
+            item = {
+                'price': basket.product.stripe_product_price_id,
+                'quantity': basket.quantity,
+            }
+            line_items.append(item)
+        return line_items
 
 
 class Basket(models.Model):
