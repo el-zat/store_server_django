@@ -1,13 +1,15 @@
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from purchases.forms import PurchaseForm
-from store.common.views import TitleMixin
 import stripe
+from http import HTTPStatus
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
-from http import HTTPStatus
+
+from purchases.forms import PurchaseForm
+from purchases.models import Purchase
+from store.common.views import TitleMixin
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -19,6 +21,18 @@ class SuccessTemplateView(TitleMixin, TemplateView):
 
 class CancelledTemplateView(TemplateView):
     template_name = 'purchases/cancelled.html'
+
+
+class PurchaseListView(TitleMixin, ListView):
+    template_name = 'purchases/purchases.html'
+    title = 'Orders'
+    queryset = Purchase.objects.all()
+    ordering = 'id'
+
+
+    def get_queryset(self):
+        queryset = super(PurchaseListView, self).get_queryset()
+        return queryset.filter(initiator=self.request.user)
 
 
 class PurchaseCreateView(TitleMixin, CreateView):
