@@ -2,6 +2,7 @@ import stripe
 from http import HTTPStatus
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy, reverse
 from django.conf import settings
 from django.views.generic.base import TemplateView
@@ -29,10 +30,19 @@ class PurchaseListView(TitleMixin, ListView):
     queryset = Purchase.objects.all()
     ordering = 'id'
 
-
     def get_queryset(self):
         queryset = super(PurchaseListView, self).get_queryset()
         return queryset.filter(initiator=self.request.user)
+
+
+class PurchaseDetailView(DetailView):
+    template_name = 'purchases/purchase.html'
+    model = Purchase
+
+    def get_context_data(self, **kwargs):
+        context = super(PurchaseDetailView, self).get_context_data(**kwargs)
+        context['title'] = f'Order # {self.object.id}'
+        return context
 
 
 class PurchaseCreateView(TitleMixin, CreateView):

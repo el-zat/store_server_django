@@ -10,6 +10,7 @@ class PurchaseAdmin(admin.ModelAdmin):
         'id', 'created',
         ('firstname', 'lastname'),
         ('email', 'address'),
+        'basket_history',
         'status', 'initiator',
     )
     readonly_fields = ('id', 'created')
