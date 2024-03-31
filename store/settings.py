@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-DOMAIN_NAME = 'http://127.0.0.1:8000'
+DOMAIN_NAME = 'http://localhost:8000'
 
 
 # Application definition
@@ -198,9 +198,3 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'storeserverdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'qtuq nvih vvzr mmmd'
 EMAIL_USE_SSL = True
-
-
-# Stripe
-
-STRIPE_PUBLIC_KEY = 'pk_test_51OxajwEZ0aTg4ftyKbqcER6eYc9Vb6cyrcIMR6TljkhieLjKzeS2vvijj7FFKlvapt6Jy2EHy1afAnl1yUnsX9AX00vZ87JPgh'
-STRIPE_SECRET_KEY = 'sk_test_51OxajwEZ0aTg4ftykDQ4Q5BXsvsIXavnq58BlTVr0JefRfZKcyL1i6Mtt7u8QfUB4Hoihrr7XMzZFRHJTgESqPiw00w0b0KBlI'

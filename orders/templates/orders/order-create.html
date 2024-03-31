@@ -22,18 +22,20 @@
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">
+                                <small class="text-muted">
+                                    {{ basket.quantity }} x
+                                </small>
                                 {{ basket.product.name }}
-                             </h6>
-                            <br>
-                            Quantity: {{ basket.quantity }}
+                            </h6>
                         </div>
                         <span class="text-muted">{{ basket.sum|intcomma }} $</span>
                     </li>
                     {% endfor %}
                     <li class="list-group-item d-flex justify-content-between">
-                        <h5>Total: </h5>
-                        <h5>{{ baskets.total_sum|intcomma}} $</h5>
+                        <span>Total: </span>
+                        <strong>{{ baskets.total_sum|intcomma}} $</strong>
                     </li>
+
                 </ul>
             </div>
             <div class="col-md-7 col-lg-8">
@@ -65,7 +67,7 @@
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Procced to check out</button>
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Next</button>
                 </form>
             </div>
         </div>
