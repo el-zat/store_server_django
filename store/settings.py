@@ -196,7 +196,3 @@ EMAIL_HOST_USER = 'storeserverdjango@gmail.com'
 EMAIL_HOST_PASSWORD = 'qtuq nvih vvzr mmmd'
 EMAIL_USE_SSL = True
 
-
-# Celery
-
-CELERY_BROKER_URL
