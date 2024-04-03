@@ -77,7 +77,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
 
     'debug_toolbar',
 
@@ -210,15 +213,28 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1
-
+# SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'SCOPE': [
             'user',
         ],
-    }
+    },
+    'linkedin': {
+            'SCOPE': [
+                'r_basicprofile',
+                'r_emailaddress'
+            ],
+            'PROFILE_FIELDS': [
+                'id',
+                'first-name',
+                'last-name',
+                'email-address',
+                'picture-url',
+                'public-profile-url',
+            ]
+        }
 }
 
 # Sending emails
