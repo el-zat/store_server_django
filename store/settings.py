@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     # 'django.contrib.sites',
     'django.contrib.humanize',
     'django_extensions',
+    'rest_framework',
 
     'allauth',
     'allauth.account',
@@ -87,6 +88,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
     'purchases.apps.PurchasesConfig',
+    'api.apps.ApiConfig',
 
 ]
 
