@@ -23,7 +23,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 from products.views import IndexView
 from purchases.views import stripe_webhook_view
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),

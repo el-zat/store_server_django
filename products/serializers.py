@@ -1,6 +1,6 @@
-from rest_framework import serializers, fields
+from rest_framework import fields, serializers
 
-from products.models import Product, ProductCategory, Basket
+from products.models import Basket, Product, ProductCategory
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -27,4 +27,3 @@ class BasketSerializer(serializers.ModelSerializer):
 
     def get_total_quantity(self, obj):
         return Basket.objects.filter(user_id=obj.user.id).total_quantity()
-

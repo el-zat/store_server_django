@@ -1,7 +1,7 @@
+from http import HTTPStatus
+
 from django.test import TestCase
 from django.urls import reverse
-
-from http import HTTPStatus
 
 from products.models import Product, ProductCategory
 
@@ -46,6 +46,3 @@ class ProductsListViewTestCase(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.context_data['title'], 'Products')
         self.assertTemplateUsed(response, 'products/products.html')
-
-
-

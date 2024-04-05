@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-import environ
 from pathlib import Path
 
+import environ
 
 env = environ.Env(
     # set casting, default value
@@ -267,5 +267,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
-
-

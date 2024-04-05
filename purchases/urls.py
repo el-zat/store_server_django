@@ -1,6 +1,8 @@
 from django.urls import path
 
-from purchases.views import PurchaseCreateView, SuccessTemplateView, CancelledTemplateView, PurchaseListView, PurchaseDetailView
+from purchases.views import (CancelledTemplateView, PurchaseCreateView,
+                             PurchaseDetailView, PurchaseListView,
+                             SuccessTemplateView)
 
 app_name = 'purchases'
 
